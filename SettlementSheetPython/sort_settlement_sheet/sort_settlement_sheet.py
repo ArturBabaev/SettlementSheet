@@ -53,9 +53,9 @@ class SortSettlementSheet:
             for data in self.data_from_csv_file:
                 if construction == data[1]:
                     if construction in self.dict_constructions_efforts:
-                        self.dict_constructions_efforts[construction].append(data[2])
+                        self.dict_constructions_efforts[construction].append(float(data[2]))
                     else:
-                        self.dict_constructions_efforts[construction] = [data[2]]
+                        self.dict_constructions_efforts[construction] = [float(data[2])]
 
     def save_result_excel_table(self) -> None:
         """
@@ -68,7 +68,7 @@ class SortSettlementSheet:
 
         for construction, efforts in self.dict_constructions_efforts.items():
             try:
-                effort_min = max([effort for effort in efforts if float(effort) < 0])
+                effort_min = min(efforts)
 
             except ValueError:
                 effort_min = 0
