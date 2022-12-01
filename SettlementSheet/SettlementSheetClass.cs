@@ -45,14 +45,24 @@ namespace SettlementSheet
             foreach (DataRow currentElement in allElements.Rows)
             {
                 int numberElem = Convert.ToInt32(currentElement[0]);
-                string construction = Convert.ToString(currentElement[6]).TrimStart(new char[] { ' ', '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' });
-
+                string construction = Convert.ToString(currentElement[6]).TrimStart(new char[] { ' ', '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' });                
+                
                 if (!String.IsNullOrEmpty(currentElement[6].ToString()))
                 {
                     foreach (DataRow currentElementBar in allElementsBar.Rows)
                     {
                         int numberElemInBar = Convert.ToInt32(currentElementBar[0]);
-                        double effort = Math.Round(Convert.ToSingle(currentElementBar[2]) * 0.000102, 3);
+
+                        double effort;
+
+                        if (!DBNull.Value.Equals(currentElementBar[2]))
+                        {
+                            effort = Math.Round(Convert.ToSingle(currentElementBar[2]) * 0.000102, 3);
+                        }
+                        else
+                        {
+                            effort = 0;
+                        }
 
                         if (numberElemInBar == numberElem)
                         {
