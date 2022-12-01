@@ -6,7 +6,7 @@ def main():
 
     sort = SortSettlementSheet(file_name=file_name)
 
-    sort.open_file_csv()
+    sort.run()
 
 
 if __name__ == '__main__':
