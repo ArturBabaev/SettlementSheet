@@ -21,7 +21,7 @@ dict_config = {
         }
     },
     'loggers': {
-        'parser': {
+        'sort_settlement_sheet': {
             'level': 'DEBUG',
             'handlers': ['file', 'console'],
         }

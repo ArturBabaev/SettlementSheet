@@ -5,7 +5,7 @@ import logging.config
 from SettlementSheetPython.logging_config import dict_config
 
 logging.config.dictConfig(dict_config)
-logger = logging.getLogger('parser')
+logger = logging.getLogger('sort_settlement_sheet')
 
 
 class SortSettlementSheet:
@@ -68,13 +68,13 @@ class SortSettlementSheet:
 
         for construction, efforts in self.dict_constructions_efforts.items():
             try:
-                effort_min = min(efforts)
+                effort_min = min([num for num in efforts if num < 0])
 
             except ValueError:
                 effort_min = 0
 
             try:
-                effort_max = max(efforts)
+                effort_max = max([num for num in efforts if num > 0])
 
             except ValueError:
                 effort_max = 0
